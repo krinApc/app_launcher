@@ -21,16 +21,22 @@
             return false;
         }
 
-        $("body").append("<iframe src='" + MY_APP_SCHEMA  + "' style='display:none'/>");
-        var checkedAt = (new Date()).getTime();
-        window.setTimeout(function() {
-            var lagtime = (new Date()).getTime() - checkedAt;
-            $("iframe").remove();
-            if (lagtime > LAG_TIME) {
-                window.location = useragent ? IOS_STORE_URL : ANDROID_STORE_URL;
-                return;
-            }
-        }, TIMEOUT);
+        // $("body").append("<iframe src='" + MY_APP_SCHEMA  + "' style='display:none'/>");
+        // var checkedAt = (new Date()).getTime();
+        // window.setTimeout(function() {
+        //     var lagtime = (new Date()).getTime() - checkedAt;
+        //     $("iframe").remove();
+        //     if (lagtime > LAG_TIME) {
+        //         window.location = useragent ? IOS_STORE_URL : ANDROID_STORE_URL;
+        //         return;
+        //     }
+        // }, TIMEOUT);
+
+        window.location = MY_APP_SCHEMA; // will result in error message if app not installed
+        setTimeout(function() {
+           // Link to the App Store should go here -- only fires if deep link fails                
+           window.location = useragent ? IOS_STORE_URL : ANDROID_STORE_URL;
+        }, 500);        
     });
 </script>
 </body>
